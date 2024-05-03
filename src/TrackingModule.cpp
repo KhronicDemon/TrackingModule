@@ -1,6 +1,6 @@
 #include "TrackingModule.h"
 #include "Player.h"
-#include "tm_config.h"
+#include "Config.h"
 
 #define SPELL_MULTITRACK 12345 // Replace this with the spell ID
 
