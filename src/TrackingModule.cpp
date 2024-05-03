@@ -29,9 +29,9 @@ void TrackingModule::CheckAndGrantSpell(Player* player)
 {
     bool hasMining = player->HasSkill(SKILL_MINING);
     bool hasHerbalism = player->HasSkill(SKILL_HERBALISM);
-    bool spellEnabled = IsMultiGatherSpellEnabled(player);
+    bool spellEnabled = GetOption<bool>("TrackingModule.EnableSpell");
 
-    uint32 spellID = sConfigMgr->GetIntDefault("TrackingModule.SpellID", SPELL_MULTITRACK);
+    uint32 spellID = GetOption<uint32>("TrackingModule.SpellID");
 
     if (spellEnabled && hasMining && hasHerbalism)
     {
@@ -58,12 +58,12 @@ void TrackingModule::OnPlayerLogin(Player* player)
 
 bool TrackingModule::IsMultiGatherSpellEnabled(Player* player)
 {
-    return sConfigMgr->GetBoolDefault("TrackingModule.EnableSpell", true);
+    return GetOption<bool>("TrackingModule.EnableSpell");
 }
 
 bool TrackingModule::ToggleMultiGatherSpell(Player* player)
 {
-    uint32 spellID = sConfigMgr->GetIntDefault("TrackingModule.SpellID", SPELL_MULTITRACK);
+    uint32 spellID = GetOption<uint32>("TrackingModule.SpellID");
     if (player->HasSpell(spellID))
     {
         player->RemoveSpell(spellID, false);
